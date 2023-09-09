@@ -6,11 +6,8 @@ import androidx.viewpager2.widget.ViewPager2
 import java.lang.reflect.Field
 
 /**
- * @类名
- * @描述
- * @作者 RinKamiuezono
- * @日期 2022/6/12
- * @版本 1.0
+ * @Author leo2
+ * @Date 2023/9/4
  */
 object ViewPager2Util {
     @JvmStatic
