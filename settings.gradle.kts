@@ -15,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SmartAdapterJar"
+rootProject.name = "SmartViewPager2Adapter"
 //include(":app")
 include(":smartVpageAdapterlibrary")
