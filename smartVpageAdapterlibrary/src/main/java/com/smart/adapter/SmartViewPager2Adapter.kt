@@ -247,15 +247,26 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
     }
 
 
-    //是否实现画廊
-    fun asGallery(leftMargin:Int,rightMargin:Int):SmartViewPager2Adapter{
+    /**
+     * 是否实现画廊
+     */
+    fun asGallery(leftMargin: Int, rightMargin: Int): SmartViewPager2Adapter {
         var recycleView = ViewPager2Util.getRecycleFromViewPager2(mViewPager2)
-        if (mViewPager2.orientation==ViewPager2.ORIENTATION_HORIZONTAL){
+        if (mViewPager2.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
             recycleView?.setPadding(leftMargin, 0, rightMargin, 0);
-        }else{
+        } else {
             recycleView?.setPadding(0, leftMargin, 0, leftMargin);
         }
         recycleView?.clipToPadding = false;
+        return this
+    }
+
+    fun setVertical(isVertical: Boolean): SmartViewPager2Adapter {
+        mViewPager2.orientation = if (isVertical) {
+            ViewPager2.ORIENTATION_VERTICAL
+        } else {
+            ViewPager2.ORIENTATION_HORIZONTAL
+        }
         return this
     }
 
@@ -270,11 +281,21 @@ class SmartViewPager2Adapter : FragmentStateAdapter {
         return this
     }
 
-    fun setPagerTransformer( smartTransformer: SmartTransformer) :SmartViewPager2Adapter{
-        when(smartTransformer){
-            SmartTransformer.TRANSFORMER_3D->{mViewPager2.setPageTransformer(if (mViewPager2.orientation==ViewPager2.ORIENTATION_HORIZONTAL)
-            {StereoPagerTransformer(mViewPager2.resources.displayMetrics.widthPixels.toFloat())}else{StereoPagerVerticalTransformer(mViewPager2.resources.displayMetrics.heightPixels.toFloat())})}
-            SmartTransformer.TRANSFORMER_ALPHA_SCALE-> mViewPager2.setPageTransformer(TransAlphScaleFormer())
+    fun setPagerTransformer(smartTransformer: SmartTransformer): SmartViewPager2Adapter {
+        when (smartTransformer) {
+            SmartTransformer.TRANSFORMER_3D -> {
+                mViewPager2.setPageTransformer(
+                    if (mViewPager2.orientation == ViewPager2.ORIENTATION_HORIZONTAL) {
+                        StereoPagerTransformer(mViewPager2.resources.displayMetrics.widthPixels.toFloat())
+                    } else {
+                        StereoPagerVerticalTransformer(mViewPager2.resources.displayMetrics.heightPixels.toFloat())
+                    }
+                )
+            }
+
+            SmartTransformer.TRANSFORMER_ALPHA_SCALE -> mViewPager2.setPageTransformer(
+                TransAlphScaleFormer()
+            )
         }
 
 
